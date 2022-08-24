@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Yash Agarwal - Static Version</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+</head>
+<body onload="brython()">
+<script type="text/python">
+	from browser import document
+	from browser.widgets.dialog import InfoDialog
+
+	def click(ev):
+		InfoDialog("Hello", f"Hello, {document['zone'].value} !")
+
+		# bind event 'click' on button to function echo
+	document["echo"].bind("click", click)
+</script>
+<input id="zone">
+<button id="echo">click !</button>
+</body>
+</html>
