@@ -18,7 +18,7 @@
 
 	def click(ev):
 		InfoDialog("Hello", f"Hello, {document['zone'].value} !")
-
+		browser.alert('hello this is a experiment')
 		# bind event 'click' on button to function echo
 	document["echo"].bind("click", click)
 </script>
