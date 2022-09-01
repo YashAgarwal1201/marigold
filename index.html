@@ -8,21 +8,19 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body onload="brython()">
-<script type="text/python">
-	from browser import document
-	from browser.widgets.dialog import InfoDialog
+<body>
+	<div id="mydiv"></div>
 
-	def click(ev):
-		InfoDialog("Hello", f"Hello, {document['zone'].value} !")
-		browser.alert('hello this is a experiment')
-		# bind event 'click' on button to function echo
-	document["echo"].bind("click", click)
-</script>
-<input id="zone">
-<button id="echo">click !</button>
+    <script type="text/babel">
+      function Hello() {
+        return <h1>Hello World!</h1>;
+      }
+
+      ReactDOM.render(<Hello />, document.getElementById('mydiv'))
+    </script>
 </body>
 </html>
