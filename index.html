@@ -4,23 +4,40 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Yash Agarwal - Static Version</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>react exp</title>
+	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+    	p {
+    		color: red;
+    	}
+    </style>
 </head>
 <body>
-	<div id="mydiv"></div>
+	<div id="output"></div>
+	<div id="output2"></div>
+	
+	<script type="text/babel">
+		function func(col) {
+			$('p').css('color',col);
+		}
 
-    <script type="text/babel">
-      function Hello() {
-        return <h1>Hello World!</h1>;
-      }
+		function Func() {
+			return (
+				<>
+					<form>
+						<input type='text'/>
+					</form>
+					<p onClick={() => func('black')}>Hello there this is a paragraph</p>
+				</>
+			);
+		}
 
-      ReactDOM.render(<Hello />, document.getElementById('mydiv'))
-    </script>
+		const root = ReactDOM.createRoot(document.getElementById('output'));
+		root.render(<Func/>);
+	</script>
 </body>
 </html>
