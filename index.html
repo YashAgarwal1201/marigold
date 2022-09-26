@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Change Background Color (using reactjs)</title>
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script-->
     
     <style type="text/css">
     	* {
@@ -17,38 +17,76 @@
     	}
     	body {
     		background-color: white;
+    		position: relative;
+    	}
+    	.output {
+    		font-size: 17px;
+    		padding: 10px;
+    		position: absolute;
+    		top: 250px;
+    		left: 40%;
+    		width: 300px;
+    		text-align: center;;
+    	}
+    	input {
+    		width: 100%;
+    		padding: 15px;
+    		display: inline-block;
+    		background: turquoise;
+    		outline: none;
+    		border: 2px solid white;
+    		border-radius: 25px;
+    		line-height: 30px;
+    		vertical-align: middle;
+    		font-size: 17px;
+    	}
+    	p {
+    		background-color: white;
+    		padding: 15px;
+    		border-radius: 25px;
     	}
     </style>
 </head>
 
-<body>
-	<div id="output"></div>
+<body id="marigold1-id">
+	<div class="output" id="output-id" title="change background color using reactjs"></div>
 	
 	<script type="text/babel">
+		const { useState } = React
 
-		function func() {
-			$('body').css('background-color',$('[type = "text"]').val());
+		function func(arg) {
+			if(CSS.supports('background', arg))
+				document.getElementById('marigold1-id').style.backgroundColor = arg
+			else 
+				alert('Not a Valid color')	
 		}
 
 		function Func() {
+			const [colorVal, setColorVal] = useState('')
+
 			let handleSubmit = (event) => {
 				event.preventDefault()
-				func()
+				func(colorVal)
 			}
 			return (
 				<>
 					<form onSubmit={handleSubmit}>
-						<input type='text'/>
-						<button type='submit'>Submit</button>
+						<input type='text' value={colorVal} onChange={(e) => setColorVal(e.target.value)} placeholder="Type color name or code"/>
 					</form>
-					<p onClick={() => func('black')}>Hello there this is a paragraph</p>
-					<p>lorem ipsum blah blah blah</p>
+					<p onClick={() => func('white')}>Type the color name or color code in the above input box and press Enter to apply the desired background color cc.</p>
 				</>
 			);
 		}
 
-		const root = ReactDOM.createRoot(document.getElementById('output'));
+		const root = ReactDOM.createRoot(document.getElementById('output-id'));
 		root.render(<Func/>);
+		
+		/*function loadAgain() {
+			$('#output-id p').load('../exp.html .output2');
+			console.log(9)
+		}*/
+		//loadAgain()
+		//setInterval(loadAgain, 7000)
 	</script>
 </body>
 </html>
