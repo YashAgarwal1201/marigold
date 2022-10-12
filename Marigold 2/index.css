@@ -1,0 +1,22 @@
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: white;
+	height: auto;
+	padding: 25px;
+}
+
+.root-element {
+	width: 100%;
+	height: auto;
+	padding: 25px;
+	border-radius: 15px;
+	background-color: rgb(55, 65, 75);
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-between;
+}

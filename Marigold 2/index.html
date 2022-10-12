@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Another Reactjs project</title>
+	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+	<div class="root-element" id="root-element-id"></div>
+	<script type="text/babel">
+		function ClientDetails() {
+			let details = {
+				browserName: navigator.appName,
+				browserLanguage: 'navigator.language'
+			};
+			return details;
+		}
+		function Fun1() {
+			const styleObj = {
+				margin: '7px',
+				color: 'white',
+				backgroundColor: 'rgb(12, 34, 87)',
+				padding: '15px',
+				width: '275px',
+				height: '275px',
+				textAlign: 'center',
+				borderRadius: '10px'
+			};
+			return (
+				<>
+					<div style={styleObj} id='div-id1'>{ClientDetails().browserName}</div>
+					<div style={styleObj} id='div-id2'></div>
+					<div style={styleObj} id='div-id3'></div>
+					<div style={styleObj} id='div-id4'></div>
+					<div style={styleObj} id='div-id5'></div>
+				</>
+			);
+		}
+
+		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
+		root.render(<Fun1/>);
+	</script>
+</body>
+</html>
