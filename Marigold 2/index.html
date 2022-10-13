@@ -15,15 +15,22 @@
 <body>
 	<div class="root-element" id="root-element-id"></div>
 	<script type="text/babel">
-		function touchOrNot() {
+		
+		function TouchOrNot() {
 			if (( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 ))
-				return true;
+				return <>True</>;
 			else
-				return false;	
+				return <>False</>;	
 		}
-		function showPosition(position) {
-		  return"Latitude: " + position.coords.latitude +
-		  "<br>Longitude: " + position.coords.longitude;
+		
+		function Location() {
+		  if (navigator.geolocation) {
+		  	navigator.geolocation.getCurrentPosition(function showPosition (position) {
+		  		return <>Latitude: { position.coords.latitude }<br/>Longitude: { position.coords.longitude}</>;
+		  	});
+		  } else {
+		  	return <>Geolocation is not supported by this browser.</>;
+		  }
 		}
 
 		function ClientDetails() {
@@ -34,14 +41,11 @@
 				colorDepth: screen.colorDepth,
 				pixelDepth: screen.pixelDepth,
 				screenSize: {sHeight: screen.height, sWidth: screen.width},
-				touchOrNot: touchOrNot(),
-				location: navigator.geolocation.getCurrentPosition(showPosition)
 			};
 			return details;
 		}
 
 		function Fun1() {
-			alert((navigator.geolocation).length)
 			const styleObj = {
 				margin: '7px',
 				color: 'white',
@@ -68,10 +72,10 @@
 						Screen Width<hr/>{ClientDetails().screenSize.sWidth}
 					</div>
 					<div style={styleObj} id='div-id8'>
-						Touch Enabled<hr/>{ClientDetails().touchOrNot}
+						Touch Support<hr/><TouchOrNot/>
 					</div>
 					<div style={styleObj} id='div-id9'>
-						Location<hr/>{ClientDetails().location}
+						Location<hr/><Location/>
 					</div>
 				</>
 			);
