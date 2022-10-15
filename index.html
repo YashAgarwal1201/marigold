@@ -1,92 +1,73 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Change Background Color (using reactjs)</title>
-	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+	<title>Marigold</title>
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script-->
-    
-    <style type="text/css">
+    <style>
     	* {
     		box-sizing: border-box;
     	}
     	body {
-    		background-color: white;
-    		position: relative;
-    	}
-    	.output {
-    		font-size: 17px;
-    		padding: 10px;
-    		position: absolute;
-    		top: 250px;
-    		left: 40%;
-    		width: 300px;
-    		text-align: center;;
-    	}
-    	input {
-    		width: 100%;
+    		background-color: #dcde9f;
     		padding: 15px;
+    		height: auto;
+    	}
+    	.root-element {
+    		display: flex;
+    		flex-flow: row-reverse wrap;
+    		justify-content: space-between;
+    		align-items: center;
+    	}
+    	button {
     		display: inline-block;
-    		background: turquoise;
+    		border: none;
     		outline: none;
-    		border: 2px solid white;
+    		background-color: #446129;
     		border-radius: 25px;
-    		line-height: 30px;
-    		vertical-align: middle;
-    		font-size: 17px;
-    	}
-    	p {
-    		background-color: white;
-    		padding: 15px;
-    		border-radius: 25px;
+    		padding: 15px 25px;
+    		margin: 7px;
+    		color: #dcde9f;
+    		cursor: pointer;
     	}
     </style>
 </head>
-
-<body id="marigold1-id">
-	<div class="output" id="output-id" title="change background color using reactjs"></div>
-	
+<body>
+	<div class="root-element" id="root-element-id"></div>
 	<script type="text/babel">
-		const { useState } = React
-
-		function func(arg) {
-			if(CSS.supports('background', arg))
-				document.getElementById('marigold1-id').style.backgroundColor = arg
-			else 
-				alert('Not a Valid color')	
-		}
-
-		function Func() {
-			const [colorVal, setColorVal] = useState('')
-
-			let handleSubmit = (event) => {
-				event.preventDefault()
-				func(colorVal)
+		function IframeElement() {
+			const IframeStyle = {
+				display: 'inline-block',
+				width: '80%',
+				height: '650px',
+				border: '3px solid #446129',
+				background: 'none',
+				outline: 'none'
+			}
+			const NavStyle = {
+				width: '20%',
+				height: 'auto',
+				display: 'flex',
+				flexFlow: 'column wrap',
+				alignItems: 'center',
+				justifyContent: 'space-between'
 			}
 			return (
-				<>
-					<form onSubmit={handleSubmit}>
-						<input type='text' value={colorVal} onChange={(e) => setColorVal(e.target.value)} placeholder="Type color name or code"/>
-					</form>
-					<p onClick={() => func('white')}>Type the color name or color code in the above input box and press Enter to apply the desired background color cc.</p>
+				<>	
+					<nav style={NavStyle}>
+						<button onClick={}>P1</button>
+						<button onClick={}>P2</button>
+					</nav>
+					<iframe loading='lazy' src="./Marigold 1/index.html" style={IframeStyle}></iframe>
 				</>
 			);
 		}
 
-		const root = ReactDOM.createRoot(document.getElementById('output-id'));
-		root.render(<Func/>);
-		
-		/*function loadAgain() {
-			$('#output-id p').load('../exp.html .output2');
-			console.log(9)
-		}*/
-		//loadAgain()
-		//setInterval(loadAgain, 7000)
+		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
+		root.render(<IframeElement/>);
 	</script>
 </body>
 </html>
