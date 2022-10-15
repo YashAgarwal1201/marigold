@@ -15,6 +15,28 @@
 <body>
 	<div class="root-element" id="root-element-id"></div>
 	<script type="text/babel">
+		function display_date() {
+
+			var x = new Date();
+			
+			var month = (x.getMonth()).toString();
+			month = month.length == 1 ? 0+month : month;
+			
+			var dt = x.getDate().toString();
+			dt = dt.length == 1 ? 0+dt : dt;
+			
+			var monthName = [ "January","Februrary","March","April","May","June","July","August","September","October","November","December" ];
+			for (var i = 0; i < monthName.length; i++) 
+			{
+				if (i == month) 
+				{
+					var x1 = monthName[i] + " " + dt + ", " + x.getFullYear();					
+				}
+			}
+
+			return x1
+
+		}
 		
 		function TouchOrNot() {
 			if (( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 ))
@@ -24,23 +46,49 @@
 		}
 		
 		function Location() {
-		  if (navigator.geolocation) {
-		  	navigator.geolocation.getCurrentPosition(function showPosition (position) {
-		  		return <>Latitude: { position.coords.latitude }<br/>Longitude: { position.coords.longitude}</>;
-		  	});
-		  } else {
-		  	return <>Geolocation is not supported by this browser.</>;
-		  }
+			//alert(props.ref)
+			let locationDetails = ''
+		  	if (navigator.geolocation) {
+		  		navigator.geolocation.getCurrentPosition(function showPosition (position) {
+		  			locationDetails += <>Latitude: { position.coords.latitude }<br/>Longitude: { position.coords.longitude}</>;
+		  		});
+		  	} else {
+		  		locationDetails += <>Geolocation is not supported by this browser.</>;
+		  	}
+		  	return (locationDetails);
 		}
+		function GetOS() {
+		  var userAgent = window.navigator.userAgent,
+			    platform = window.navigator?.userAgentData?.platform || window.navigator.platform,
+			    macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+			    windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+			    iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+			    os = '';
 
+		  if (macosPlatforms.indexOf(platform) !== -1) {
+		  		os = 'Mac OS';
+		  } else if (iosPlatforms.indexOf(platform) !== -1) {
+		    	os = 'iOS';
+		  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+		    	os = 'Windows';
+		  } else if (/Android/.test(userAgent)) {
+		    	os = 'Android';
+		  } else if (/Linux/.test(platform)) {
+		    	os = 'Linux';
+		  }
+		  		return os;
+		}
+		
 		function ClientDetails() {
 			let details = {
 				browserName: navigator.appName,
 				browserLanguage: navigator.language,
+				wHistory: window.history.length,
 				windowSize: {wWidth: window.innerWidth, wHeight: window.innerHeight},
 				colorDepth: screen.colorDepth,
 				pixelDepth: screen.pixelDepth,
 				screenSize: {sHeight: screen.height, sWidth: screen.width},
+				dNt: display_date()
 			};
 			return details;
 		}
@@ -64,19 +112,17 @@
 						Browser Window Width<hr/>{ClientDetails().windowSize.wWidth}<br/><br/><br/><br/>
 						Browser Window Height<hr/>{ClientDetails().windowSize.wHeight}
 					</div>
-					<div style={styleObj} id='div-id4'>{history.length}</div>
+					<div style={styleObj} id='div-id4'>Window History Length<hr/>{ClientDetails().wHistory}</div>
 					<div style={styleObj} id='div-id5'>Color Depth<hr/>{ClientDetails().colorDepth}</div>
 					<div style={styleObj} id='div-id6'>Pixel Depth<hr/>{ClientDetails().pixelDepth}</div>
 					<div style={styleObj} id='div-id7'>
 						Screen Height<hr/>{ClientDetails().screenSize.sHeight}<br/><br/><br/><br/>
 						Screen Width<hr/>{ClientDetails().screenSize.sWidth}
 					</div>
-					<div style={styleObj} id='div-id8'>
-						Touch Support<hr/><TouchOrNot/>
-					</div>
-					<div style={styleObj} id='div-id9'>
-						Location<hr/><Location/>
-					</div>
+					<div style={styleObj} id='div-id8'>Touch Support<hr/><TouchOrNot/></div>
+					<div style={styleObj} id='div-id9'>Location<hr/><Location/></div>
+					<div style={styleObj} id='div-id10'>Date<hr/>{ClientDetails().dNt}</div>
+					<div style={styleObj} id='div-id11'>OS<hr/><GetOS/></div>
 				</>
 			);
 		}
@@ -84,46 +130,5 @@
 		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
 		root.render(<Fun1/>);
 	</script>
-	<!-- Alternative Script -->
-	<!--script type="text/babel">
-		function ClientDetails() {
-			let details = {
-				browserName: navigator.appName,
-				browserLanguage: navigator.language
-			};
-			return details;
-		}
-		function Fun1() {
-			const ClientDetails = () => {
-					let details = {
-					browserName: navigator.appName,
-					browserLanguage: navigator.language
-				};
-				return details;
-			}
-			const styleObj = {
-				margin: '7px',
-				color: 'white',
-				backgroundColor: 'rgb(12, 34, 87)',
-				padding: '15px',
-				width: '275px',
-				height: '275px',
-				textAlign: 'center',
-				borderRadius: '10px'
-			};
-			return (
-				<>
-					<div style={styleObj} id='div-id1'>{ClientDetails().browserName}</div>
-					<div style={styleObj} id='div-id2'>{ClientDetails().browserLanguage}</div>
-					<div style={styleObj} id='div-id3'></div>
-					<div style={styleObj} id='div-id4'></div>
-					<div style={styleObj} id='div-id5'></div>
-				</>
-			);
-		}
-
-		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
-		root.render(<Fun1/>);
-	</script-->
 </body>
 </html>
