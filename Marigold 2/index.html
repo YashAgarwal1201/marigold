@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Another Reactjs project</title>
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
@@ -106,7 +106,7 @@
 			};
 			return (
 				<>
-					<div style={styleObj} id='div-id1'>{ClientDetails().browserName}</div>
+					{/*<div style={styleObj} id='div-id1'>{ClientDetails().browserName}</div>*/}
 					<div style={styleObj} id='div-id2'>Browser Language<hr/>{ClientDetails().browserLanguage}</div>
 					<div style={styleObj} id='div-id3'>
 						Browser Window Width<hr/>{ClientDetails().windowSize.wWidth}<br/><br/><br/><br/>
@@ -120,7 +120,7 @@
 						Screen Width<hr/>{ClientDetails().screenSize.sWidth}
 					</div>
 					<div style={styleObj} id='div-id8'>Touch Support<hr/><TouchOrNot/></div>
-					<div style={styleObj} id='div-id9'>Location<hr/><Location/></div>
+					{/*<div style={styleObj} id='div-id9'>Location<hr/><Location/></div>*/}
 					<div style={styleObj} id='div-id10'>Date<hr/>{ClientDetails().dNt}</div>
 					<div style={styleObj} id='div-id11'>OS<hr/><GetOS/></div>
 				</>
