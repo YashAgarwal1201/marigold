@@ -13,12 +13,16 @@
     	* {
     		box-sizing: border-box;
     	}
+    	html {
+    		height: 100%;
+    	}
     	body {
     		background-color: #dcde9f;
-    		padding: 15px;
-    		height: auto;
     	}
     	.root-element {
+    		position: absolute;
+    		top: 0; left: 0; right: 0; bottom: 0;
+    		padding: 15px 15px 15px 25px;
     		display: flex;
     		flex-flow: row-reverse wrap;
     		justify-content: space-between;
@@ -57,13 +61,21 @@
 				alignItems: 'center',
 				justifyContent: 'space-between'
 			}
+			const IframeSrc = (arg) => {
+				if(arg == 'P1')
+					document.getElementById('iframe-id').src = './Marigold 1/index.html'
+				else if(arg == 'P2')
+					document.getElementById('iframe-id').src = './Marigold 2/index.html'
+				else
+					alert(99)		
+			}
 			return (
 				<>	
 					<nav style={NavStyle}>
-						<button onClick={}>P1</button>
-						<button onClick={}>P2</button>
+						<button onClick={()=>IframeSrc('P1')}>P1</button>
+						<button onClick={()=>IframeSrc('P2')}>P2</button>
 					</nav>
-					<iframe loading='lazy' src="./Marigold 1/index.html" style={IframeStyle}></iframe>
+					<iframe loading='lazy' src="./Marigold 1/index.html" style={IframeStyle} id='iframe-id'></iframe>
 				</>
 			);
 		}

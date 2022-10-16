@@ -1,7 +1,11 @@
 
-function Func() {
-	return <p>hello there</p>;
+var isTouch = ''
+
+function TouchOrNot() {
+	if (( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 ))
+		isTouch = true
+	else
+		isTouch = false
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
-root.render(<Func/>);
+export isTouch
