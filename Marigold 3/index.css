@@ -1,0 +1,19 @@
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+}
+
+body {
+	padding: 25px;
+}
+
+.root-element {
+	background-color: orangered;
+	width: 100%;
+	padding: 25px;
+	border-radius: 15px;
+}
