@@ -1,87 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-IN">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Marigold</title>
+	<title>Marigold 3</title>
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 	<!-- Note: while development, replace "production.min.js" with "development.js" -->
-	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <style>
-    	* {
-    		box-sizing: border-box;
-    	}
-    	html {
-    		height: 100%;
-    	}
-    	body {
-    		background-color: #dcde9f;
-    	}
-    	.root-element {
-    		position: absolute;
-    		top: 0; left: 0; right: 0; bottom: 0;
-    		padding: 15px 15px 15px 25px;
-    		display: flex;
-    		flex-flow: row-reverse wrap;
-    		justify-content: space-between;
-    		align-items: center;
-    	}
-    	button {
-    		display: inline-block;
-    		border: none;
-    		outline: none;
-    		background-color: #446129;
-    		border-radius: 25px;
-    		padding: 15px 25px;
-    		margin: 7px;
-    		color: #dcde9f;
-    		cursor: pointer;
-    	}
-    </style>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
 	<div class="root-element" id="root-element-id"></div>
 	<script type="text/babel">
-		function IframeElement() {
-			const IframeStyle = {
-				display: 'inline-block',
-				width: '80%',
-				height: '650px',
-				border: '3px solid #446129',
-				background: 'none',
-				outline: 'none'
-			}
-			const NavStyle = {
-				width: '20%',
-				height: 'auto',
-				display: 'flex',
-				flexFlow: 'column wrap',
-				alignItems: 'center',
-				justifyContent: 'space-between'
-			}
-			const IframeSrc = (arg) => {
-				if(arg == 'P1')
-					document.getElementById('iframe-id').src = './Marigold 1/index.html'
-				else if(arg == 'P2')
-					document.getElementById('iframe-id').src = './Marigold 2/index.html'
-				else
-					alert(99)		
-			}
-			return (
-				<>	
-					<nav style={NavStyle}>
-						<button onClick={()=>IframeSrc('P1')}>M1</button>
-						<button onClick={()=>IframeSrc('P2')}>M2</button>
-					</nav>
-					<iframe loading='lazy' src="./Marigold 1/index.html" style={IframeStyle} id='iframe-id'></iframe>
-				</>
-			);
+		const { useState } = React
+
+		function WikiSearch(props) {
+			let wikiSearchResult = {}
+			var info = fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${arg}`)
+			info.then((res) => res.json()).then((argument) => {
+				return (<>
+					<h2>Wikipedia Search Results</h2>
+					<content>
+						<h3>{argument.title}</h3>
+						<p>{argument.description}</p>
+					</content>
+					<content>
+						<img src="${argument.originalimage.source}" 
+							style="width: ${argument.thumbnail.width}px; 
+									height: ${argument.thumbnail.height}px; margin: auto;" />
+						<p>{argument.extract}</p>	
+					</content>
+					<a href="${argument.content_urls.desktop.page}" target="_blank">
+						<u>Click to view Page</u> <i class="material-icons-outlined">chevron_right</i>
+					</a>
+				</>)
+			})
 		}
 
-		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
-		root.render(<IframeElement/>);
+		function SearchComponent () {
+			const [iniVal, setIniVal] = useState('')
+
+			let handleSubmit = event => {
+				event.preventDefault()
+				console.log(iniVal)
+			}
+			return (
+				<>
+					<div className="search-component" id="search-component-id">
+						<form onSubmit={handleSubmit}>
+							<input type="search" name="Search" placeholder="Search Something..." 
+								value={iniVal} onChange={(event) => setIniVal(event.target.value)}/>
+							<button type="submit"><i className="material-icons-outlined">search</i></button>
+						</form>
+					</div>
+				</>
+			)
+		}
+
+		function ResultComponent () {
+			return (
+				<>
+					<div className="result-component" id="result-component-id">
+						
+					</div>
+				</>
+			)
+		}
+
+		function Component() {
+			return (
+				<>
+					<SearchComponent/>
+					<ResultComponent/>
+				</>
+			)
+		}
+
+		const root = ReactDOM.createRoot(document.getElementById('root-element-id'))
+		root.render(<Component/>)
 	</script>
 </body>
 </html>
