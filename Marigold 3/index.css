@@ -12,6 +12,9 @@ html, body {
 	width: calc(100vw - 1vw);
 	height: calc(100vh - 2vw);
 }
+body {
+	background-color: white;
+}
 
 button, input, textarea, iframe {
 	display: inline-block;
@@ -67,49 +70,55 @@ h6 {
 
 .search-component, .result-component {
 	width: 47%;
-	max-height: 100%;
+	height: 100%;
 	padding: 25px;
 	background-color: orangered;
 	border-radius: 20px;
 	box-shadow: 7px 7px 12px black;
 }
+.search-component {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 .search-component form {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	padding: 15px;
-	background-color: yellow;
-	width: fit-content;
+	background-color: black;
+	width: 100%;
 	height: 200px;
 	margin: auto;
 	border-radius: 15px;
 }
 
 .result-component {
-	top: 0; left: 0; right: 0; bottom: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 .result-component::-webkit-scrollbar {
 	width: 5px;
+	border-radius: 500px;
 }
 .result-component::-webkit-scrollbar-thumb {
-	background-color: yellow;
+	border-radius: 10px;
+	background-color: black;
 }
 .result-component::-webkit-scrollbar-track {
 	background-color: transparent;
 }
 
 input, button {
-	color: orangered;
 	background-color: white;
 }
 form input {
+	font-weight: bold;
 	width: 300px;
 	height: 50px;
-	padding: 10px;
+	padding: 10px 10px 10px 15px;
 	border-radius: 25px;
 }
 form button {
@@ -125,6 +134,7 @@ form button {
 		flex-flow: column;
 	}
 	.search-component, .result-component {
+		margin-bottom: 25px;
 		width: 100%;
 	}
 }
