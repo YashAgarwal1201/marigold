@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>my site</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <!--script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script-->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <!--script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script-->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"/>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            html, body {
+                width: 100%; height: 100%;
+            }
+            .root-element {
+                height: 100%; width: 100%;
+            }
+        </style>
+    </head>
+    <body class="w3-container w3-khaki w3-padding">
+       <div class="root-element w3-round-large w3-amber w3-card w3-padding-large" id="root-element-id"></div>
+
+       <script type="text/babel">
+            //
+            const { useState } = React
+
+            function Layout() {
+                return (
+                    <div>
+                        {folderPath}    
+                    </div>
+                )
+            }
+
+            function Component () {
+                //
+                const [folderState, setFolderState] = useState('')
+                    let handleSubmit = (event) => {
+                    event.preventDefault();
+                    let valueF = document.querySelectorAll('input').value
+                    alert(valueF)
+                }
+
+                const btnStyles = `w3-button w3-khaki w3-hover-white w3-half`
+                return (
+                    <>
+                        <h1>hello world</h1>
+                        <form onSubmit={handleSubmit} className={`w3-row`} style={{height: "40px"}}>
+                            <input type="text" name="FilePath" placeholder="Path to File or Folder..."  className="w3-col l10 m9 s12 w3-input w3-border w3-mobile"  style={{height: "100%"}}/>
+                            <div className="w3-col l2 m3 s12 w3-mobile" style={{height: "100%"}}>
+                                <button type="reset" className={btnStyles} style={{height: "100%"}}><i className={`material-icons-round`}>delete</i></button>
+                                <button type="submit" className={btnStyles} style={{height: "100%"}}><i className={`material-icons-round`}>send</i></button>
+                            </div>    
+                        </form>
+                    </>
+                )
+            }
+
+            const root = ReactDOM.createRoot(document.getElementById('root-element-id'))
+		    root.render(<Component/>)
+       </script>
+    </body>   
+</html>
