@@ -19,10 +19,10 @@
                 width: 100%; height: 100%;
             }
             .root-element {
-                height: 100%; width: 100%;
+                min-height: 100%; width: 100%;
             }
             .horizontal-container {
-                min-width: 100%; height: 400px; white-space: nowrap;
+                min-width: 100%; height: calc((60/100) * 100vh); white-space: nowrap;
                 overflow-x: auto; scroll-snap-type: x mandatory;
             }
             .card {
@@ -45,6 +45,7 @@
             function Layout(props) {
                 return (
                     <>
+                    <h1>{props.heading}</h1>
                     <div className="horizontal-container">
                         {
                             props.size.map((value, key) => <div key={key} id={key} className="card w3-khaki w3-round w3-margin-right">
@@ -60,9 +61,11 @@
                 //
                 const [folderState, setFolderState] = useState('')
                 const arr = [1,2,3,4,5,6,7,8,9]
+                const heading = "Heading"
                 return (
                     <>
-                        <Layout size={arr} />
+                        <Layout size={arr} heading={heading}/>
+                        <Layout size={arr} heading={heading}/>
                     </>
                 )
             }
