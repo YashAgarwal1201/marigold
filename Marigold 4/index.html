@@ -21,43 +21,48 @@
             .root-element {
                 height: 100%; width: 100%;
             }
+            .horizontal-container {
+                min-width: 100%; height: 400px; white-space: nowrap;
+                overflow-x: auto; scroll-snap-type: x mandatory;
+            }
+            .card {
+                display: inline-block; width: 90%; height: 100%; text-align: center; scroll-snap-align: start;
+            }::-webkit-scrollbar {
+    			display: none;
+    		}
+            .thumbnail {
+                width: 100%; height: 80%;
+            }
         </style>
     </head>
-    <body class="w3-container w3-khaki w3-padding">
-       <div class="root-element w3-round-large w3-amber w3-card w3-padding-large" id="root-element-id"></div>
+    <body class="w3-khaki">
+       <div class="root-element w3-amber w3-padding-large w3-padding-32" id="root-element-id"></div>
 
        <script type="text/babel">
             //
             const { useState } = React
 
-            function Layout() {
+            function Layout(props) {
                 return (
-                    <div>
-                        {folderPath}    
+                    <>
+                    <div className="horizontal-container">
+                        {
+                            props.size.map((value, key) => <div key={key} id={key} className="card w3-khaki w3-round w3-margin-right">
+                                {"content"}    
+                            </div>)
+                        }  
                     </div>
+                    </>
                 )
             }
 
             function Component () {
                 //
                 const [folderState, setFolderState] = useState('')
-                    let handleSubmit = (event) => {
-                    event.preventDefault();
-                    let valueF = document.querySelectorAll('input').value
-                    alert(valueF)
-                }
-
-                const btnStyles = `w3-button w3-khaki w3-hover-white w3-half`
+                const arr = [1,2,3,4,5,6,7,8,9]
                 return (
                     <>
-                        <h1>hello world</h1>
-                        <form onSubmit={handleSubmit} className={`w3-row`} style={{height: "40px"}}>
-                            <input type="text" name="FilePath" placeholder="Path to File or Folder..."  className="w3-col l10 m9 s12 w3-input w3-border w3-mobile"  style={{height: "100%"}}/>
-                            <div className="w3-col l2 m3 s12 w3-mobile" style={{height: "100%"}}>
-                                <button type="reset" className={btnStyles} style={{height: "100%"}}><i className={`material-icons-round`}>delete</i></button>
-                                <button type="submit" className={btnStyles} style={{height: "100%"}}><i className={`material-icons-round`}>send</i></button>
-                            </div>    
-                        </form>
+                        <Layout size={arr} />
                     </>
                 )
             }
