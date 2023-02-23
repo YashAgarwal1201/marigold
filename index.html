@@ -1,85 +1,83 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en-US">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Marigold 3</title>
+	<title>Marigold</title>
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 	<!-- Note: while development, replace "production.min.js" with "development.js" -->
-	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="defaultStyles.css" />
+    <style>
+    	* {
+    		box-sizing: border-box;
+    	}
+    	html, body {
+    		height: 100%; width: 100%;
+    	}
+    	.root-element {
+			width: 100%; height: 100%;
+    		display: flex;
+    		flex-flow: row wrap;
+    		justify-content: space-between;
+    		align-items: center;
+    	}
+		.navBar {
+			width: 150px; height: 100vh;
+			display: flex; flex-direction: column; justify-content: center; align-items: center;
+		}
+		.content {
+			width: calc(100vw - 175px); height: calc((85/100) * 100vh); white-space: nowrap;
+			overflow-y: auto; scroll-snap-type: x mandatory;
+		}
+		.content iframe {
+			display: inline-block; width: 95%; height: 100%; scroll-snap-align: start;
+			outline: none;
+		}::-webkit-scrollbar {
+    			display: none;
+    		}
+		button {
+			width: 100px;
+		}
+    </style>
 </head>
 <body>
-	<div class="root-element" id="root-element-id"></div>
+	<div class="root-element w3-theme-d5" id="root-element-id"></div>
 	<script type="text/babel">
-		const { useState } = React
+		function IframeElement() {
+			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
+			const iframeStyle = 'w3-border-theme w3-round-large w3-margin-right w3-card'
+			const IframeSrc = (arg) => {
+				if(arg == 'P1')
+					document.getElementById('iframe-id').src = './Marigold 1/index.html'
+				else if(arg == 'P2')
+					document.getElementById('iframe-id').src = './Marigold 2/index.html'
+				else if(arg == 'P3')
+					document.getElementById('iframe-id').src = './Marigold 3/index.html'	
+				else {
+					
+				}
 
-		function WikiSearch(props) {
-			let wikiSearchResult = {}
-			var info = fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${arg}`)
-			info.then((res) => res.json()).then((argument) => {
-				return (<>
-					<h2>Wikipedia Search Results</h2>
-					<content>
-						<h3>{argument.title}</h3>
-						<p>{argument.description}</p>
-					</content>
-					<content>
-						<img src="${argument.originalimage.source}" 
-							style="width: ${argument.thumbnail.width}px; 
-									height: ${argument.thumbnail.height}px; margin: auto;" />
-						<p>{argument.extract}</p>	
-					</content>
-					<a href="${argument.content_urls.desktop.page}" target="_blank">
-						<u>Click to view Page</u> <i class="material-icons-outlined">chevron_right</i>
-					</a>
-				</>)
-			})
-		}
-
-		function SearchComponent () {
-			const [iniVal, setIniVal] = useState('')
-
-			let handleSubmit = event => {
-				event.preventDefault()
-				console.log(iniVal)
 			}
 			return (
-				<>
-					<div className="search-component" id="search-component-id">
-						<form onSubmit={handleSubmit}>
-							<input type="search" name="Search" placeholder="Search Something..." 
-								value={iniVal} onChange={(event) => setIniVal(event.target.value)}/>
-							<button type="submit"><i className="material-icons-outlined">search</i></button>
-						</form>
+				<>	
+					<nav className="navBar">
+						<button className={btnStyles} onClick={()=>IframeSrc('P1')}>M1</button>
+						<button className={btnStyles} onClick={()=>IframeSrc('P2')}>M2</button>
+						<button className={btnStyles} onClick={()=>IframeSrc('P3')}>M3</button>
+					</nav>
+					<div className="content w3-round-large w3-margin-right w3-margin-top">
+						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
+						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
 					</div>
 				</>
-			)
+			);
 		}
 
-		function ResultComponent () {
-			return (
-				<>
-					<div className="result-component" id="result-component-id">
-						
-					</div>
-				</>
-			)
-		}
-
-		function Component() {
-			return (
-				<>
-					<SearchComponent/>
-					<ResultComponent/>
-				</>
-			)
-		}
-
-		const root = ReactDOM.createRoot(document.getElementById('root-element-id'))
-		root.render(<Component/>)
+		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
+		root.render(<IframeElement/>);
 	</script>
 </body>
 </html>
