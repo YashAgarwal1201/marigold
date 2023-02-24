@@ -41,6 +41,21 @@
 		button {
 			width: 100px;
 		}
+		@media screen and (max-width: 768px) {
+			.root-element {
+				flex-flow: column wrap; justify-content: flex-start;
+			}
+			.navBar {
+				width: 100%; height: calc((10/100) * 100vh); overflow-x: auto;
+				flex-direction: row;
+			}
+			.navBar button {
+				margin-right: 7px;
+			}
+			.content {
+				width: calc((95/100) * 100vw); height: calc((85/100) * 100vh);
+			}
+		}
     </style>
 </head>
 <body>
