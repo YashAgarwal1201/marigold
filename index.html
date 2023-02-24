@@ -33,8 +33,8 @@
 			overflow-y: auto; scroll-snap-type: x mandatory;
 		}
 		.content iframe {
-			display: inline-block; width: 95%; height: 100%; scroll-snap-align: start;
-			outline: none;
+			display: inline-block; width: 95%; height: calc(100% - 15px); scroll-snap-align: start;
+			outline: none; border-width: 3px;
 		}::-webkit-scrollbar {
     			display: none;
     		}
@@ -59,11 +59,11 @@
     </style>
 </head>
 <body>
-	<div class="root-element w3-theme-d5" id="root-element-id"></div>
+	<div class="root-element w3-theme-d3" id="root-element-id"></div>
 	<script type="text/babel">
 		function IframeElement() {
 			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
-			const iframeStyle = 'w3-border-theme w3-round-large w3-margin-right w3-card'
+			const iframeStyle = 'w3-border-theme w3-hover-border-theme w3-round-large w3-margin-right w3-card-4'
 			const IframeSrc = (arg) => {
 				if(arg == 'P1')
 					document.getElementById('iframe-id').src = './Marigold 1/index.html'
@@ -83,7 +83,7 @@
 						<button className={btnStyles} onClick={()=>IframeSrc('P2')}>M2</button>
 						<button className={btnStyles} onClick={()=>IframeSrc('P3')}>M3</button>
 					</nav>
-					<div className="content w3-round-large w3-margin-right w3-margin-top">
+					<div className="content w3-margin-right w3-margin-top">
 						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
 						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
 					</div>
