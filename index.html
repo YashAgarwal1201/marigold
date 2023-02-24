@@ -41,6 +41,9 @@
 		button {
 			width: 100px;
 		}
+		#footer-id {
+			width: 100vw;
+		}
 		@media screen and (max-width: 768px) {
 			.root-element {
 				flex-flow: column wrap; justify-content: flex-start;
@@ -61,16 +64,33 @@
 <body>
 	<div class="root-element w3-theme-d3" id="root-element-id"></div>
 	<script type="text/babel">
+		function Footer () {
+			return (
+				<div class="w3-padding-large w3-theme-d5 w3-border" id="footer-id">		
+					<b>Made by</b><br/>Yash Agarwal<br/>
+					<b>E-mail</b>: <a href="mailto:legoyashx@hotmail.com">legoyashx@hotmail.com</a><br/>
+					<b>Website</b>: <a href="https://agarwalyash.epizy.com/">agarwalyash.epizy.com</a>
+				</div>
+			)
+		}
+
 		function IframeElement() {
 			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
 			const iframeStyle = 'w3-border-theme w3-hover-border-theme w3-round-large w3-margin-right w3-card-4'
+
+			const totalNumber = 4
+
+			const btns = Array.from({ length: totalNumber }).map((it, index) => <button className={btnStyles} onClick={()=>IframeSrc(`P${index+1}`)}>M{index+1}</button>)
+			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index+1}/index.html`} id='iframe-id'></iframe>)
 			const IframeSrc = (arg) => {
 				if(arg == 'P1')
 					document.getElementById('iframe-id').src = './Marigold 1/index.html'
 				else if(arg == 'P2')
 					document.getElementById('iframe-id').src = './Marigold 2/index.html'
 				else if(arg == 'P3')
-					document.getElementById('iframe-id').src = './Marigold 3/index.html'	
+					document.getElementById('iframe-id').src = './Marigold 3/index.html'
+				else if(arg == 'P4')
+					document.getElementById('iframe-id').src = './Marigold 4/index.html'	
 				else {
 					
 				}
@@ -79,14 +99,14 @@
 			return (
 				<>	
 					<nav className="navBar">
-						<button className={btnStyles} onClick={()=>IframeSrc('P1')}>M1</button>
-						<button className={btnStyles} onClick={()=>IframeSrc('P2')}>M2</button>
-						<button className={btnStyles} onClick={()=>IframeSrc('P3')}>M3</button>
+						{ btns }
+						<button className={btnStyles} onClick={()=>IframeSrc(`P0`)}>About</button>
 					</nav>
-					<div className="content w3-margin-right w3-margin-top">
-						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
-						<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
+					<div className="content w3-margin-right w3-margin-top"> { iframes }
+						{/*<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
+					<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>*/}
 					</div>
+					<Footer />
 				</>
 			);
 		}
