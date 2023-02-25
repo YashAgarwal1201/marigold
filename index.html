@@ -13,6 +13,7 @@
     <style>
     	* {
     		box-sizing: border-box;
+			scroll-behavior: smooth;
     	}
     	html, body {
     		height: 100%; width: 100%;
@@ -64,6 +65,8 @@
 <body>
 	<div class="root-element w3-theme-d3" id="root-element-id"></div>
 	<script type="text/babel">
+		const { useState } = React
+
 		function Footer () {
 			return (
 				<div class="w3-padding-large w3-theme-d5 w3-border" id="footer-id">		
@@ -75,26 +78,23 @@
 		}
 
 		function IframeElement() {
+
 			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
 			const iframeStyle = 'w3-border-theme w3-hover-border-theme w3-round-large w3-margin-right w3-card-4'
 
 			const totalNumber = 4
-
 			const btns = Array.from({ length: totalNumber }).map((it, index) => <button className={btnStyles} onClick={()=>IframeSrc(`P${index+1}`)}>M{index+1}</button>)
-			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index+1}/index.html`} id='iframe-id'></iframe>)
+			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index+1}/index.html`} id={`iframe${index+1}-id`}></iframe>)
+			
 			const IframeSrc = (arg) => {
 				if(arg == 'P1')
-					document.getElementById('iframe-id').src = './Marigold 1/index.html'
+					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe1-id').getBoundingClientRect().left
 				else if(arg == 'P2')
-					document.getElementById('iframe-id').src = './Marigold 2/index.html'
+					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe2-id').getBoundingClientRect().left
 				else if(arg == 'P3')
-					document.getElementById('iframe-id').src = './Marigold 3/index.html'
-				else if(arg == 'P4')
-					document.getElementById('iframe-id').src = './Marigold 4/index.html'	
-				else {
-					
-				}
-
+					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe3-id').getBoundingClientRect().left
+				else 
+					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe4-id').getBoundingClientRect().left
 			}
 			return (
 				<>	
@@ -102,9 +102,8 @@
 						{ btns }
 						<button className={btnStyles} onClick={()=>IframeSrc(`P0`)}>About</button>
 					</nav>
-					<div className="content w3-margin-right w3-margin-top"> { iframes }
-						{/*<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>
-					<iframe className={iframeStyle} loading='lazy' src="./Marigold 1/index.html" id='iframe-id'></iframe>*/}
+					<div className="content w3-margin-right w3-margin-top" id='cont-id'> 
+						{ iframes }
 					</div>
 					<Footer />
 				</>
