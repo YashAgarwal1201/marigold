@@ -87,20 +87,22 @@
 			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index+1}/index.html`} id={`iframe${index+1}-id`}></iframe>)
 			
 			const IframeSrc = (arg) => {
+				let el = document.getElementById('cont-id')
+				console.log(arg)
 				if(arg == 'P1')
-					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe1-id').getBoundingClientRect().left
+					el.scrollLeft = document.getElementById('iframe1-id').offsetLeft
 				else if(arg == 'P2')
-					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe2-id').getBoundingClientRect().left
+					el.scrollLeft = document.getElementById('iframe2-id').offsetLeft
 				else if(arg == 'P3')
-					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe3-id').getBoundingClientRect().left
+					el.scrollLeft = document.getElementById('iframe3-id').offsetLeft
 				else 
-					document.getElementById('cont-id').scrollLeft = document.getElementById('iframe4-id').getBoundingClientRect().left
+					el.scrollLeft = document.getElementById('iframe4-id').offsetLeft
 			}
 			return (
 				<>	
 					<nav className="navBar">
 						{ btns }
-						<button className={btnStyles} onClick={()=>IframeSrc(`P0`)}>About</button>
+						<button className={btnStyles} onClick={()=>console.log('p0')}>About</button>
 					</nav>
 					<div className="content w3-margin-right w3-margin-top" id='cont-id'> 
 						{ iframes }
