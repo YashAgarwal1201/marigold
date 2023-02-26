@@ -16,7 +16,7 @@
 			scroll-behavior: smooth;
     	}
     	html, body {
-    		height: 100%; width: 100%;
+    		height: 100vh; width: 100vw;
     	}
     	.root-element {
 			width: 100%; height: 100%;
@@ -43,9 +43,10 @@
 			width: 100px;
 		}
 		#footer-id {
-			width: 100vw;
+			display: auto;
+			width: calc(100vw - 10px);
 		}
-		@media screen and (max-width: 768px) {
+		@media screen and (max-width: 850px) {
 			.root-element {
 				flex-flow: column wrap; justify-content: flex-start;
 			}
@@ -63,13 +64,15 @@
     </style>
 </head>
 <body>
-	<div class="root-element w3-theme-d3" id="root-element-id"></div>
+	<div class="root-element w3-theme-d3 w3-display-container" id="root-element-id"></div>
 	<script type="text/babel">
 		const { useState } = React
 
-		function Footer () {
+		function Footer (props) {
+			
 			return (
-				<div class="w3-padding-large w3-theme-d5 w3-border" id="footer-id">		
+				<div className="w3-display-middle w3-card w3-padding-large w3-round-large w3-theme-d5 w3-border-theme" id="footer-id" style={{display: props.show}}>
+					<button onClick={() => document.getElementById('footer-id').style.display = 'none'} className="w3-button w3-round w3-display-topright">&times;</button>		
 					<b>Made by</b><br/>Yash Agarwal<br/>
 					<b>E-mail</b>: <a href="mailto:legoyashx@hotmail.com">legoyashx@hotmail.com</a><br/>
 					<b>Website</b>: <a href="https://agarwalyash.epizy.com/">agarwalyash.epizy.com</a>
@@ -78,7 +81,8 @@
 		}
 
 		function IframeElement() {
-
+			const [btnState, setBtnState] = useState('')
+			
 			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
 			const iframeStyle = 'w3-border-theme w3-hover-border-theme w3-round-large w3-margin-right w3-card-4'
 
@@ -88,7 +92,7 @@
 			
 			const IframeSrc = (arg) => {
 				let el = document.getElementById('cont-id')
-				console.log(arg)
+				//console.log(arg)
 				if(arg == 'P1')
 					el.scrollLeft = document.getElementById('iframe1-id').offsetLeft
 				else if(arg == 'P2')
@@ -102,12 +106,12 @@
 				<>	
 					<nav className="navBar">
 						{ btns }
-						<button className={btnStyles} onClick={()=>console.log('p0')}>About</button>
+						<button className={btnStyles} onClick={()=> setBtnState('block')}>About</button>
 					</nav>
 					<div className="content w3-margin-right w3-margin-top" id='cont-id'> 
 						{ iframes }
 					</div>
-					<Footer />
+					{(btnState) ? <Footer show={'block'}/> : <Footer show={'none'}/>}
 				</>
 			);
 		}

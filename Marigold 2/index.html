@@ -12,9 +12,10 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
-<body>
-	<div class="root-element" id="root-element-id"></div>
+<body class="w3-white w3-padding-large">
+	<div class="root-element w3-round-large w3-green w3-padding-16" id="root-element-id"></div>
 	<script type="text/babel">
+		
 		function display_date() {
 
 			var x = new Date();
@@ -96,33 +97,28 @@
 		function Fun1() {
 			const styleObj = {
 				margin: '7px',
-				color: 'white',
-				backgroundColor: 'rgb(12, 34, 87)',
-				padding: '15px',
-				width: '275px',
-				height: '200px',
-				textAlign: 'center',
-				borderRadius: '10px'
+				height: 'fit-content',
 			};
+			const cardStyles = 'w3-text-orange w3-leftbar w3-border-theme w3-round-large w3-padding-large w3-yellow'
 			return (
 				<>
 					{/*<div style={styleObj} id='div-id1'>{ClientDetails().browserName}</div>*/}
-					<div style={styleObj} id='div-id2'>Browser Language<hr/>{ClientDetails().browserLanguage}</div>
-					<div style={styleObj} id='div-id3'>
-						Browser Window Width<hr/>{ClientDetails().windowSize.wWidth}<br/><br/><br/><br/>
-						Browser Window Height<hr/>{ClientDetails().windowSize.wHeight}
+					<div className={cardStyles} style={styleObj} id='div-id2'>Browser Language : {ClientDetails().browserLanguage}</div>
+					<div className={cardStyles} style={styleObj} id='div-id3'>
+						Browser Window (or, Viewport) Width : {ClientDetails().windowSize.wWidth}<br/>
+						Browser Window (or, Viewport) Height : {ClientDetails().windowSize.wHeight}
 					</div>
-					<div style={styleObj} id='div-id4'>Window History Length<hr/>{ClientDetails().wHistory}</div>
-					<div style={styleObj} id='div-id5'>Color Depth<hr/>{ClientDetails().colorDepth}</div>
-					<div style={styleObj} id='div-id6'>Pixel Depth<hr/>{ClientDetails().pixelDepth}</div>
-					<div style={styleObj} id='div-id7'>
-						Screen Height<hr/>{ClientDetails().screenSize.sHeight}<br/><br/><br/><br/>
-						Screen Width<hr/>{ClientDetails().screenSize.sWidth}
+					<div className={cardStyles} style={styleObj} id='div-id4'>Window History Length : {ClientDetails().wHistory}</div>
+					<div className={cardStyles} style={styleObj} id='div-id5'>Color Depth : {ClientDetails().colorDepth}</div>
+					<div className={cardStyles} style={styleObj} id='div-id6'>Pixel Depth : {ClientDetails().pixelDepth}</div>
+					<div className={cardStyles} style={styleObj} id='div-id7'>
+						Screen Height : {ClientDetails().screenSize.sHeight}<br/>
+						Screen Width : {ClientDetails().screenSize.sWidth}
 					</div>
-					<div style={styleObj} id='div-id8'>Touch Support<hr/><TouchOrNot/></div>
-					{/*<div style={styleObj} id='div-id9'>Location<hr/><Location/></div>*/}
-					<div style={styleObj} id='div-id10'>Date<hr/>{ClientDetails().dNt}</div>
-					<div style={styleObj} id='div-id11'>OS<hr/><GetOS/></div>
+					<div className={cardStyles} style={styleObj} id='div-id8'>Touch Support : <TouchOrNot/></div>
+					{/*<div style={styleObj} id='div-id9'>Location<Location/></div>*/}
+					<div className={cardStyles} style={styleObj} id='div-id10'>Date : {ClientDetails().dNt}</div>
+					<div className={cardStyles} style={styleObj} id='div-id11'>OS : <GetOS/></div>
 				</>
 			);
 		}

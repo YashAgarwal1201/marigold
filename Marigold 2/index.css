@@ -1,15 +1,11 @@
 
+@import url('../defaultStyles.css');
+
 * {
 	box-sizing: border-box;
 }
-html {
-	height: 100%;
-}
-
-body {
-	background-color: white;
-	height: auto;
-	padding: 20px;
+html, body {
+	min-height: 100vh; width: 100vw;
 }
 
 body::-webkit-scrollbar {
@@ -20,19 +16,21 @@ body::-webkit-scrollbar-track {
 	background-color: white;
 }
 body::-webkit-scrollbar-thumb { 
-	background-color: rgb(55, 65, 75); 
+	background-color: black ;
 	border-right: 3px solid white;
 }	
 
 
 .root-element {
 	width: 100%;
-	height: auto;
-	padding: 25px;
-	border-radius: 15px;
-	background-color: rgb(55, 65, 75);
+	height: 100%;
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 }
+[id^=div-id] {
+	width: calc(100% - 50px);
+}
+.w3-border-theme {border-color:#cc3600 !important}
+

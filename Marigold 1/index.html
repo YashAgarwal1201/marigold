@@ -10,16 +10,16 @@
 	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../defaultStyles.css" />
     
     <style type="text/css">
     	* {
     		box-sizing: border-box;
+			scroll-behavior: smooth;
     	}
-    	body {
-    		background-color: white;
-    		position: relative;
-    		height: 700px;
-    	}
+		html, body {
+			width: 100vw; height: 100vh; background-color: white;
+		}
     	body::-webkit-scrollbar {
 			width: 5px; 
 			height: 0px; 
@@ -34,38 +34,18 @@
     	.output {
     		font-size: 17px;
     		padding: 10px;
-    		width: 300px;
-    		height: 300px;
-    		margin: 0;
+    		width: 350px;
+    		height: calc((30/100) * 100vh);
     		text-align: center;
-    		position: absolute;
-    		top: 50%;
-			left: 50%;
-			-ms-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-    	}
-    	input {
-    		width: 100%;
-    		padding: 15px;
-    		display: inline-block;
-    		background: turquoise;
-    		outline: none;
-    		border: 2px solid white;
-    		border-radius: 25px;
-    		line-height: 30px;
-    		vertical-align: middle;
-    		font-size: 17px;
     	}
     	p {
-    		background-color: white;
-    		padding: 15px;
     		border-radius: 25px;
     	}
     </style>
 </head>
 
-<body id="marigold1-id">
-	<div class="output" id="output-id" title="change background color using reactjs"></div>
+<body id="marigold1-id" class="w3-display-container">
+	<div class="output w3-mobile w3-display-middle" id="output-id" title="change background color using reactjs"></div>
 	
 	<script type="text/babel">
 		const { useState } = React
@@ -81,28 +61,21 @@
 			const [colorVal, setColorVal] = useState('')
 
 			let handleSubmit = (event) => {
-				event.preventDefault()
 				func(colorVal)
+				event.preventDefault()
 			}
 			return (
 				<>
 					<form onSubmit={handleSubmit}>
-						<input type='text' value={colorVal} onChange={(e) => setColorVal(e.target.value)} placeholder="Type color name or code"/>
+						<input className="w3-input w3-card-4 w3-yellow w3-round-xxlarge w3-padding-large" type='text' value={colorVal} onChange={(e) => setColorVal(e.target.value)} placeholder="Type color name or code"/>
 					</form>
-					<p onClick={() => func('white')}>Type the color name or color code in the above input box and press Enter to apply the desired background color cc.</p>
+					<p className="w3-lime w3-card w3-padding-large" onClick={() => func('white')}>Type the color name or color code in the above input box and press Enter to apply the desired background color cc.</p>
 				</>
 			);
 		}
 
 		const root = ReactDOM.createRoot(document.getElementById('output-id'));
 		root.render(<Func/>);
-		
-		/*function loadAgain() {
-			$('#output-id p').load('../exp.html .output2');
-			console.log(9)
-		}*/
-		//loadAgain()
-		//setInterval(loadAgain, 7000)
 	</script>
 </body>
 </html>
