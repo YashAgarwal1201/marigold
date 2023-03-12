@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,74 +8,116 @@
 	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 	<!-- Note: while development, replace "production.min.js" with "development.js" -->
 	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="defaultStyles.css" />
-    <style>
-    	* {
-    		box-sizing: border-box;
+	<link rel="icon" type="image/x-icon" href="./YA Logo.png">
+	<style>
+		* {
+			box-sizing: border-box;
 			scroll-behavior: smooth;
-    	}
-    	html, body {
-    		height: 100vh; width: 100vw;
-    	}
-    	.root-element {
-			width: 100%; height: 100%;
-    		display: flex;
-    		flex-flow: row wrap;
-    		justify-content: space-between;
-    		align-items: center;
-    	}
+		}
+
+		html,
+		body {
+			height: 100vh;
+			width: 100vw;
+		}
+
+		.root-element {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			align-items: center;
+		}
+
 		.navBar {
-			width: 150px; height: 100vh;
-			display: flex; flex-direction: column; justify-content: center; align-items: center;
+			width: 150px;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 		}
+
 		.content {
-			width: calc(100vw - 175px); height: calc((85/100) * 100vh); white-space: nowrap;
-			overflow-y: auto; scroll-snap-type: x mandatory;
+			width: calc(100vw - 175px);
+			height: calc((85/100) * 100vh);
+			white-space: nowrap;
+			overflow-y: auto;
+			scroll-snap-type: x mandatory;
+			scroll-snap-stop: always;
 		}
+
 		.content iframe {
-			display: inline-block; width: 95%; height: calc(100% - 15px); scroll-snap-align: start;
-			outline: none; border-width: 3px;
-		}::-webkit-scrollbar {
-    			display: none;
-    		}
+			display: inline-block;
+			width: 95%;
+			height: calc(100% - 15px);
+			scroll-snap-align: start;
+			outline: none;
+			border-width: 3px;
+		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+
 		button {
 			width: 100px;
 		}
+
 		#footer-id {
 			display: auto;
 			width: calc(100vw - 10px);
 		}
+
 		@media screen and (max-width: 850px) {
 			.root-element {
-				flex-flow: column wrap; justify-content: flex-start;
+				flex-flow: column wrap;
+				justify-content: flex-start;
 			}
+
 			.navBar {
-				width: 100%; height: calc((10/100) * 100vh); overflow-x: auto;
-				flex-direction: row;
+				width: 100%;
+				height: calc((10/100) * 100vh);
+				overflow-x: auto;
+				flex-flow: row nowrap;
 			}
+
 			.navBar button {
-				margin-right: 7px;
+				min-width: 125px;
+				margin-left: 7px;
 			}
+
 			.content {
-				width: calc((95/100) * 100vw); height: calc((85/100) * 100vh);
+				margin-left: 8px;
+				width: calc((95/100) * 100vw);
+				height: calc((85/100) * 100vh);
 			}
 		}
-    </style>
+
+		@media screen and (max-width: 450px) {
+			.navBar {
+				justify-content: flex-start;
+			}
+		}
+	</style>
 </head>
+
 <body>
 	<div class="root-element w3-theme-d3 w3-display-container" id="root-element-id"></div>
 	<script type="text/babel">
 		const { useState } = React
 
-		function Footer (props) {
-			
+		function Footer(props) {
+
 			return (
-				<div className="w3-display-middle w3-card w3-padding-large w3-round-large w3-theme-d5 w3-border-theme" id="footer-id" style={{display: props.show}}>
-					<button onClick={() => document.getElementById('footer-id').style.display = 'none'} className="w3-button w3-round w3-display-topright">&times;</button>		
-					<b>Made by</b><br/>Yash Agarwal<br/>
-					<b>E-mail</b>: <a href="mailto:legoyashx@hotmail.com">legoyashx@hotmail.com</a><br/>
+				<div className="w3-display-middle w3-card w3-padding-large w3-round-large w3-theme-d5 w3-border-theme" id="footer-id" style={{ display: props.show }}>
+					<button onClick={() => document.getElementById('footer-id').style.display = 'none'} className="w3-button w3-round w3-display-topright">&times;</button>
+					<b>Made by</b><br />Yash Agarwal<br />
+					<b>E-mail</b>: <a href="mailto:legoyashx@hotmail.com">legoyashx@hotmail.com</a><br />
 					<b>Website</b>: <a href="https://agarwalyash.epizy.com/">agarwalyash.epizy.com</a>
 				</div>
 			)
@@ -82,42 +125,43 @@
 
 		function IframeElement() {
 			const [btnState, setBtnState] = useState('')
-			
+
 			const btnStyles = 'w3-button w3-round-xxlarge w3-padding w3-theme-l5 w3-hover-theme w3-margin-top w3-text-theme'
 			const iframeStyle = 'w3-border-theme w3-hover-border-theme w3-round-large w3-margin-right w3-card-4'
 
 			const totalNumber = 4
-			const btns = Array.from({ length: totalNumber }).map((it, index) => <button className={btnStyles} onClick={()=>IframeSrc(`P${index+1}`)}>M{index+1}</button>)
-			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index+1}/index.html`} id={`iframe${index+1}-id`}></iframe>)
-			
+			const btns = Array.from({ length: totalNumber }).map((it, index) => <button className={btnStyles} onClick={() => IframeSrc(`P${index + 1}`)}>M{index + 1}</button>)
+			const iframes = Array.from({ length: totalNumber }).map((it, index) => <iframe className={iframeStyle} loading='lazy' src={`./Marigold ${index + 1}/index.html`} id={`iframe${index + 1}-id`}></iframe>)
+
 			const IframeSrc = (arg) => {
 				let el = document.getElementById('cont-id')
 				//console.log(arg)
-				if(arg == 'P1')
+				if (arg == 'P1')
 					el.scrollLeft = document.getElementById('iframe1-id').offsetLeft
-				else if(arg == 'P2')
+				else if (arg == 'P2')
 					el.scrollLeft = document.getElementById('iframe2-id').offsetLeft
-				else if(arg == 'P3')
+				else if (arg == 'P3')
 					el.scrollLeft = document.getElementById('iframe3-id').offsetLeft
-				else 
+				else
 					el.scrollLeft = document.getElementById('iframe4-id').offsetLeft
 			}
 			return (
-				<>	
+				<>
 					<nav className="navBar">
-						{ btns }
-						<button className={btnStyles} onClick={()=> setBtnState('block')}>About</button>
+						{btns}
+						<button className={btnStyles} onClick={() => setBtnState('block')}>About</button>
 					</nav>
-					<div className="content w3-margin-right w3-margin-top" id='cont-id'> 
-						{ iframes }
+					<div className="content w3-margin-right w3-margin-top" id='cont-id'>
+						{iframes}
 					</div>
-					{(btnState) ? <Footer show={'block'}/> : <Footer show={'none'}/>}
+					{(btnState) ? <Footer show={'block'} /> : <Footer show={'none'} />}
 				</>
 			);
 		}
 
 		const root = ReactDOM.createRoot(document.getElementById('root-element-id'));
-		root.render(<IframeElement/>);
+		root.render(<IframeElement />);
 	</script>
 </body>
+
 </html>
