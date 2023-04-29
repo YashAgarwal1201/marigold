@@ -1,140 +1,89 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Fresca&family=\
-	Signika+Negative:wght@300&family=Spline+Sans+Mono:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
-
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-	scroll-behavior: smooth;
-	width: calc(100vw - 1vw);
-	height: calc(100vh - 2vw);
-}
+html,
 body {
-	background-color: white;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
-
-button, input, textarea, iframe {
-	display: inline-block;
-	outline: none;
-	border: none;
-	resize: none;
-	background: none;
-}
-button:hover, a:hover {
-	cursor: pointer;
-}
-h1, h2, h3, i, iframe {
-	font-family: 'Signika Negative', sans-serif; 
-}
-p, button, a, span, summary, details, label, ul, li, div, content, section { 
-	font-family: 'Fresca', sans-serif;
-	font-size: 20px;
-}
-input::placeholder, textarea::placeholder, input, textarea {
-	font-family: 'Spline Sans Mono', monospace;
-}
-
-/* Font sizes for headings */
-h1 {
-	font-size: 70px;
-}
-h2 {
-	font-size: 50px;
-}
-h3 {
-	font-size: 35px;
-}
-h4 {
-	font-size: 25px;
-}
-h5 {
-	font-size: 17;
-}
-h6 {
-	font-size: 10px;
-}
-
 
 .root-element {
-	width: 100%;
-	height: 100%;
-	padding: 20px;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-evenly;
-	align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 25px 25px;
+  overflow: hidden;
+}
+.input-section, .output-section {
+  width: 46%;
+  height: 100%;
+  /* border: 1px solid black; */
+  border-radius: 25px;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 50px 25px;
 }
 
-.search-component, .result-component {
-	width: 47%;
-	height: 100%;
-	padding: 25px;
-	background-color: orangered;
-	border-radius: 20px;
-	box-shadow: 7px 7px 12px black;
-}
-.search-component {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.input-section form {
+  width: 100%;
+  /* height: 70%; */
+  /* border: 1px solid maroon; */
+  margin: auto;
 }
 
-.search-component form {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	align-items: center;
-	padding: 15px;
-	background-color: black;
-	width: 100%;
-	height: 200px;
-	margin: auto;
-	border-radius: 15px;
+label {
+  width: 100%;
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+textarea {
+  width: 100%;
+  height: 400px;
+  background-color: olivedrab;
+  border-radius: 20px;
+  display: inline-block;
+  border: none;
+  resize: none;
+  outline: none;
+  margin-top: 15px;
+  padding: 25px 10px 15px 10px;
+  /* color: white; */
+  font-size: 15px;
 }
 
-.result-component {
-	overflow-x: hidden;
-	overflow-y: scroll;
+.input-actions {
+  width: 100%;
+  padding-top: 15px;
+  display: flex;
+  /* justify-content: ; */
+  gap: 15px 15px;
 }
-.result-component::-webkit-scrollbar {
-	width: 5px;
-	border-radius: 500px;
-}
-.result-component::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background-color: black;
-}
-.result-component::-webkit-scrollbar-track {
-	background-color: transparent;
-}
-
-input, button {
-	background-color: white;
-}
-form input {
-	font-weight: bold;
-	width: 300px;
-	height: 50px;
-	padding: 10px 10px 10px 15px;
-	border-radius: 25px;
-}
-form button {
-	width: 50px;
-	height: 50px;
-	margin-left: 5px;
-	padding: auto;
-	border-radius: 50%;
+button {
+  cursor: pointer;
+  display: inline;
+  outline: none;
+  border: none;
+  background-color: orangered;
+  /* color: white; */
+  text-transform: capitalize;
+  font-weight: 700;
+  width: 50%;
+  height: 50px;
+  border-radius: 25px;
 }
 
-@media screen and (max-width: 700px) {
-	.root-element {
-		flex-flow: column;
-	}
-	.search-component, .result-component {
-		margin-bottom: 25px;
-		width: 100%;
-	}
+@media (hover: hover) {
+  button:hover {
+    background-color: #ff4500cc;
+    /* color: olivedrab; */
+  }
 }

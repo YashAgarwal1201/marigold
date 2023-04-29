@@ -1,90 +1,55 @@
 <!DOCTYPE html>
 <html lang="en-IN">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Marigold 3</title>
-	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-	<!-- Note: while development, replace "production.min.js" with "development.js" -->
-	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marigold 3</title>
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <!-- Note: while development, replace "production.min.js" with "development.js" -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
-</head>
-<body>
-	<div class="root-element" id="root-element-id"></div>
-	<script type="text/babel">
-		const { useState, useEffect } = React
-		var queryVar = 'news', resultStat = null
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
 
-		function WikiSearch(props) {
-			
-			if(props.argument) {
-				alert(props.argument)
-				return (<>
-					<h2>Wikipedia Search Results</h2>
-					<content>
-						<h3>{argument.title}</h3>
-						<p>{argument.description}</p>
-					</content>
-					<content>
-						<img src="${argument.originalimage.source}" 
-							style="width: ${argument.thumbnail.width}px; 
-									height: ${argument.thumbnail.height}px; margin: auto;" />
-						<p>{argument.extract}</p>	
-					</content>
-					<a href="${argument.content_urls.desktop.page}" target="_blank">
-						<u>Click to view Page</u> <i class="material-icons-outlined">chevron_right</i>
-					</a>
-				</>)
-			}
-			else {
-				return <>Some Error</>
-			}
-		}
+  <body>
+    <div class="root-element" id="root-element-id"></div>
+    <script type="text/babel">
+      const { useState, useEffect } = React;
 
-		function fun(props) {
-			let arg = props
-			var info = fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${arg}`)
-			info.then((res) => res.json()).then((argument) => {
-				console.log(argument)
-				return argument
-			})
-		}
+      function Layout() {
+        return (
+          <>
+            <div className="input-section">
+              <form>
+                <div className="input-container">
+                  <label>Input Text</label>
+                  <textarea></textarea>
+                </div>
+                <div className="input-actions">
+                  <button>send</button>
+                  <button>delete</button>
+                </div>
+              </form>
+            </div>
+            <div className="output-section">
+              <h1>Data</h1>
+              <div className="output-container">content</div>
+            </div>
+          </>
+        );
+      }
 
-		function Component() {
-			const [iniVal, setIniVal] = useState('')
-			const [state2, setState2] = useState('')
-			var data
-
-			let handleSubmit = event => {
-				event.preventDefault()
-				queryVar = iniVal
-				if (queryVar) {
-					data = fun(queryVar)
-					resultStat = true
-				}
-				console.log(data)
-			}
-			
-			return (
-				<>
-					<div className="search-component" id="search-component-id">
-						<form onSubmit={handleSubmit}>
-							<input autoComplete="off" type="search" name="Search" placeholder="Search Something..." 
-								value={iniVal} onChange={(event) => setIniVal(event.target.value)}/>
-							<button type="submit"><i className="material-icons-outlined">search</i></button>
-						</form>
-					</div>
-					<div className="result-component" id="result-component-id">
-						
-					</div>
-				</>
-			)
-		}
-
-		const root = ReactDOM.createRoot(document.getElementById('root-element-id'))
-		root.render(<Component/>)
-	</script>
-</body>
+      const root = ReactDOM.createRoot(
+        document.getElementById("root-element-id")
+      );
+      root.render(<Layout />);
+    </script>
+  </body>
 </html>
