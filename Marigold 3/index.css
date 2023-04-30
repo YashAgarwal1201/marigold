@@ -85,9 +85,25 @@ button {
 }
 .output-container {
   width: 100%;
+  border: 1px solid darkolivegreen;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px 15px;
+}
+.output {
+  width: 100%;
   padding: 25px 15px 20px 15px;
   border-radius: 20px;
+  font-size: 15px;
   background-color: chocolate;
+  white-space: pre;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  border-right: 8px solid olivedrab;
 }
 
 
