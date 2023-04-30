@@ -24,22 +24,32 @@
       const { useState, useEffect } = React;
 
       function Layout() {
+		const [state, setState] = useState('')
+
+		const handleSubmit = (event) => {
+			event.preventDefault()
+			console.log(state)
+		}
         return (
           <>
             <div className="input-section">
-              <form>
+              <form id="form-id" onSubmit={handleSubmit}>
                 <div className="input-container">
-                  <label>Input Text</label>
-                  <textarea></textarea>
+                  <label>
+                    Enter Content
+                    <br />
+                    <span>you want to paste on side wall</span>
+                  </label>
+                  <textarea value={state} onChange={(e) => setState(e.target.value)}></textarea>
                 </div>
                 <div className="input-actions">
-                  <button>send</button>
-                  <button>delete</button>
+                  <button type="submit">Add</button>
+                  <button type="reset" onClick={() => console.log(9)}>delete all</button>
                 </div>
               </form>
             </div>
             <div className="output-section">
-              <h1>Data</h1>
+              <h1>side wall</h1>
               <div className="output-container">content</div>
             </div>
           </>
