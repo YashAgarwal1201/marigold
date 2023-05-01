@@ -43,11 +43,12 @@
                   <textarea
                     value={state}
                     onChange={(e) => setState(e.target.value)}
+					placeholder="Your content"
                   ></textarea>
                 </div>
                 <div className="input-actions">
                   <button type="submit">Add</button>
-                  <button type="reset" onClick={() => console.log(9)}>
+                  <button type="reset" onClick={() => document.getElementById('form-id').reset()}>
                     delete all
                   </button>
                 </div>
@@ -63,10 +64,55 @@
                     <button>remove</button>
                   </div>
                 </div>
-                <div className="output">content</div>
-                <div className="output">content</div>
-                <div className="output">content</div>
-                <div className="output">content</div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+                <div className="output">
+                  <div className="output-content">content</div>
+                  <div className="output-content">
+                    <button>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
               </div>
             </div>
           </>
