@@ -23,8 +23,63 @@
     <script type="text/babel">
       const { useState, useEffect } = React;
 
+      function UpdateOutput() {
+        const copyContent = (value) => {
+          navigator.clipboard.writeText(value);
+          alert("Content Copied");
+        };
+
+        var outputContent, otVar;
+        if (localStorage.getItem("data1")) {
+          if (!localStorage.getItem("data-main")) {
+            let temp = [localStorage.getItem("data1")];
+            outputContent = (
+              <>
+                <div className="output">
+                  <div className="output-content">{temp}</div>
+                  <div className="output-content">
+                    <button onClick={() => copyContent(temp)}>copy</button>
+                    <button>remove</button>
+                  </div>
+                </div>
+              </>
+            );
+          } else {
+            otVar = JSON.parse(localStorage.getItem("data-main"));
+            if (Array.isArray(otVar)) {
+              outputContent = otVar?.map((values, keys) => (
+                <>
+                  <div className="output">
+                    <div className="output-content">{values}</div>
+                    <div className="output-content">
+                      <button onClick={() => copyContent(values)}>copy</button>
+                      <button>remove</button>
+                    </div>
+                  </div>
+                </>
+              ));
+            } else {
+              console.log("oops an error has occured");
+            }
+          }
+        } else {
+          // const x = localStorage.getItem("data1")
+          outputContent = (
+            <>
+              <div className="output">
+                <div className="output-content">No content present</div>
+              </div>
+            </>
+          );
+        }
+        return outputContent;
+      }
+
       function Layout() {
         const [state, setState] = useState("");
+        const outputContentList = UpdateOutput();
+        const [outputContentState, setOutputContentState] =
+          useState(outputContentList);
 
         const handleSubmit = (event) => {
           event.preventDefault();
@@ -35,24 +90,39 @@
               if (!localStorage.getItem("data-main")) {
                 let temp = [localStorage.getItem("data1"), state];
                 localStorage.setItem("data-main", JSON.stringify(temp));
+                setOutputContentState(UpdateOutput());
               } else {
                 let temp = JSON.parse(localStorage.getItem("data-main"));
                 if (Array.isArray(temp)) {
                   temp.push(state);
                   localStorage.setItem("data-main", JSON.stringify(temp));
-                //   console.log(temp);
-                //   console.log(localStorage.getItem("data-main"));
+                  setOutputContentState(UpdateOutput());
                 } else {
                   console.log("oops an error has occured");
                 }
               }
             } else {
               localStorage.setItem("data1", state);
+              setOutputContentState(UpdateOutput());
             }
           }
           setState("");
           console.log(state);
         };
+
+        // const outputContent = JSON.parse(localStorage.getItem("data-main"));
+        // const outputContentList = outputContent?.map((values, keys) => (
+        //   <>
+        //     <div className="output">
+        //       <div className="output-content">{values}</div>
+        //       <div className="output-content">
+        //         <button>copy</button>
+        //         <button>remove</button>
+        //       </div>
+        //     </div>
+        //   </>
+        // ));
+
         return (
           <>
             <div className="input-section">
@@ -88,66 +158,16 @@
                 }}
               >
                 <h1>side wall</h1>
-                <button onClick={() => localStorage.clear()}>Delete All</button>
+                <button
+                  onClick={() => {
+                    localStorage.clear();
+                    setOutputContentState(UpdateOutput());
+                  }}
+                >
+                  Delete All
+                </button>
               </div>
-              <div className="output-container">
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-                <div className="output">
-                  <div className="output-content">content</div>
-                  <div className="output-content">
-                    <button>copy</button>
-                    <button>remove</button>
-                  </div>
-                </div>
-              </div>
+              <div className="output-container">{outputContentState}</div>
             </div>
           </>
         );
