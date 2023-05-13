@@ -1,77 +1,119 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>my site</title>
-        <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-        <!--script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script-->
-        <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-        <!--script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script-->
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css" />
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"/>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            html, body {
-                width: 100%; height: 100%;
-            }
-            .root-element {
-                min-height: 100%; width: 100%;
-            }
-            .horizontal-container {
-                min-width: 100%; height: calc((60/100) * 100vh); white-space: nowrap;
-                overflow-x: auto; scroll-snap-type: x mandatory;
-            }
-            .card {
-                display: inline-block; width: 90%; height: 100%; text-align: center; scroll-snap-align: start;
-            }::-webkit-scrollbar {
-    			display: none;
-    		}
-            .thumbnail {
-                width: 100%; height: 80%;
-            }
-        </style>
-    </head>
-    <body class="w3-khaki">
-       <div class="root-element w3-amber w3-padding-large w3-padding-32" id="root-element-id"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>my site</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <!--script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script-->
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <!--script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://www.w3schools.com/w3css/4/w3.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-       <script type="text/babel">
-            //
-            const { useState } = React
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
 
-            function Layout(props) {
-                return (
-                    <>
-                    <h1>{props.heading}</h1>
-                    <div className="horizontal-container">
-                        {
-                            props.size.map((value, key) => <div key={key} id={key} className="card w3-khaki w3-round w3-margin-right">
-                                {"content"}    
-                            </div>)
-                        }  
-                    </div>
-                    </>
-                )
-            }
+      .root-element {
+        min-height: 100%;
+        width: 100%;
+      }
 
-            function Component () {
-                //
-                const [folderState, setFolderState] = useState('')
-                const arr = [1,2,3,4,5,6,7,8,9]
-                const heading = "Heading"
-                return (
-                    <>
-                        <Layout size={arr} heading={heading}/>
-                        <Layout size={arr} heading={heading}/>
-                    </>
-                )
-            }
+      .horizontal-container {
+        min-width: 100%;
+        height: calc((60 / 100) * 100vh);
+        white-space: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+      }
 
-            const root = ReactDOM.createRoot(document.getElementById('root-element-id'))
-		    root.render(<Component/>)
-       </script>
-    </body>   
+      .card {
+        display: inline-block;
+        width: 90%;
+        height: 100%;
+        text-align: center;
+        scroll-snap-align: start;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      .thumbnail {
+        width: 100%;
+        height: 80%;
+      }
+    </style>
+  </head>
+
+  <body class="w3-khaki">
+    <div
+      class="root-element w3-amber w3-padding-large w3-padding-32"
+      id="root-element-id"
+    ></div>
+
+    <script type="text/babel">
+      //
+      const { useState } = React;
+
+      function Layout(props) {
+        return (
+          <>
+            <h1>{props.heading}</h1>
+            <div className="horizontal-container">
+              {props.size.map((value, key) => (
+                <div
+                  key={key}
+                  id={key}
+                  className="card w3-khaki w3-round w3-margin-right"
+                >
+                  {"content"}
+                </div>
+              ))}
+            </div>
+          </>
+        );
+      }
+
+      function Component() {
+        //
+        const [folderState, setFolderState] = useState("");
+        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const heading = "Heading";
+        return (
+          <>
+            <Layout size={arr} heading={heading} />
+            <Layout size={arr} heading={heading} />
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(
+        document.getElementById("root-element-id")
+      );
+      root.render(<Component />);
+    </script>
+  </body>
 </html>
