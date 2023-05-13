@@ -134,3 +134,43 @@ button {
     border-radius: 10px;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .root-element {
+    padding: 12px;
+  }
+  .input-section,
+  .output-section {
+    width: 50%;
+    padding-left: 12px;
+    padding-right: 12px;
+    /* justify-content: flex-start; */
+  }
+}
+@media screen and (max-width: 800px) {
+  .root-element {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: auto;
+  }
+  .input-section,
+  .output-section {
+    width: 95%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 500px) {
+  .root-element {
+    padding: 0px;
+  }
+  .input-section,
+  .output-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  textarea {
+    padding: 15px 7px 12px 7px;
+    font-size: 12px;
+  }
+}
